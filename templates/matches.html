@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<header>
+  <h1>{{ title }}</h1>
+</header>
+
+<nav>
+  <a href="/">Home</a>
+  <a href="/rankings">Rankings</a>
+  <a href="/matches">Matches</a>
+  <a href="/profiles">Profiles</a>
+</nav>
+
+<div class="section">
+  <div>
+    <h2>Upcoming Matches</h2>
+    {% if upcoming %}
+      <ol>
+        {% for match in upcoming %}
+          <li> {{ match['event_first_player'] }} vs. {{match['event_second_player']}} : {{match['scores'][0][score_first]}}-{{match['scores'][1][score_first]}}</li>
+        {% endfor %}
+      </ol>
+    {% else %}
+      <p>No players found.</p>
+    {% endif %}
+  </div>
+  <div>
+    <h2>Completed Matches</h2>
+    {% if completed %}
+      <ol>
+        {% for match in completed %}
+          <li> {{ match['event_first_player'] }} vs. {{match['event_second_player']}} : {{match['scores'][0][score_first]}}-{{match['scores'][1][score_first]}}</li>
+        {% endfor %}
+      </ol>
+    {% else %}
+      <p>No players found.</p>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<header>
+  <h1>{{ title }}</h1>
+</header>
+
+<nav>
+  <a href="/">Home</a>
+  <a href="/rankings">Rankings</a>
+  <a href="/matches">Matches</a>
+  <a href="/profiles">Profiles</a>
+</nav>
+
+<div class="container">
+  <div class="section">
+    <h2>Select Tour & Range</h2>
+    <form method="get" action="/rankings">
+      <label for="tour">Tour:</label>
+      <select name="tour" id="tour">
+        <option value="WTA" {% if tour == 'WTA' %}selected{% endif %}>WTA</option>
+        <option value="ATP" {% if tour == 'ATP' %}selected{% endif %}>ATP</option>
+      </select>
+
+      <label for="start">From rank:</label>
+      <input type="number" name="start" id="start" value="{{ start }}" min="1" max="500"/>
+
+      <label for="end">To rank:</label>
+      <input type="number" name="end" id="end" value="{{ end }}" min="1" max="500"/>
+
+      <button type="submit">Update</button>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>Players (Rank {{ start }}–{{ end }})</h2>
+    {% if players %}
+      <ol start="{{ start }}">
+        {% for player in players %}
+          <li>{{ player['player'] }} - {{ player['points'] }} pts</li>
+          {% if player['movement'] == "down" %}
+            <span title="Moved Up" style="color: green; display: inline-block">&#9650;</span>
+          {% elif player['movement'] == "up" %}
+            <span title="Moved Down" style="color: red; display: inline-block">&#9660;</span>
+          {% elif player['movement'] == "same" %}
+            <span title="No Change" style="color: gray; display: inline-block">&#8212;</span>
+          {% endif %}
+        {% endfor %}
+      </ol>
+    {% else %}
+      <p>No players found.</p>
+    {% endif %}
+  </div>
+</div>
+
+</body>
+</html>
