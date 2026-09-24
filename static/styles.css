@@ -1,0 +1,106 @@
+/* ==========================================================================
+   COURTSENSE BASE THEME CONFIGURATION
+   ========================================================================== */
+:root {
+    --bg-main: #121824;          /* Deep dark blue workspace canvas */
+    --bg-card: #1a2333;          /* Slightly lighter contrast card layer */
+    --border: #2a374e;           /* Clean separation line color */
+    --text-main: #f3f4f6;        /* Crisp, readable primary content text */
+    --text-muted: #9ca3af;       /* Secondary meta text label tone */
+    --accent: #38bdf8;           /* Sky blue highlight indicator */
+    --accent-hover: #7dd3fc;     /* Smooth interactive glow transitions */
+}
+
+/* Base Document Layout Resets */
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+/* ==========================================================================
+   DASHBOARD NAVIGATION TABS (Targets structural headers/anchors)
+   ========================================================================== */
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+nav {
+    display: flex;
+    gap: 1.75rem;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.75rem;
+    margin-bottom: 2.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    padding: 0.25rem 0;
+    position: relative;
+    transition: color 0.2s ease-in-out;
+}
+
+nav a:hover {
+    color: var(--text-main);
+}
+
+/* Intelligent highlights: Highlights elements matching current URL pathing */
+nav a.active, 
+nav a[href=""]:hover {
+    color: var(--accent);
+}
+
+/* ==========================================================================
+   DATA TABLES (Styles your match metrics, profiles, and rankings)
+   ========================================================================== */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1.5rem;
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+th {
+    background-color: #1e293b;
+    color: var(--text-main);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    padding: 1rem;
+    border-bottom: 2px solid var(--border);
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Zebra row optimization for high-density ranking displays */
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.015);
+}
+
+tr:hover td {
+    background-color: rgba(56, 189, 248, 0.04); /* Subtle horizontal hover row trace */
+}
